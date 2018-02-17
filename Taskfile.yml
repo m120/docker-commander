@@ -31,6 +31,7 @@ stop:
   desc: Dokcer stop
   cmds:
     - docker stop $(docker ps | awk '$0 ~ /{{.DOCKER_IMAGE}}/ {print $1}')
+  silent: true
 
 shell:
   desc: Get into a container
@@ -43,3 +44,9 @@ rmi:
   desc: Delete Dokcer image
   cmds:
     - docker rmi {{.DOCKER_IMAGE}} && echo
+
+backup_file:
+  desc: backup
+  cmds:
+    - install -d {{.BACKUP_DIR}}/{{now | date "060102_1504"}}
+    - docker cp $(docker ps | awk '$0 ~ /{{.DOCKER_IMAGE}}/ {print $1}'):{{.BAKCUP_FILE}} {{.BACKUP_DIR}}/{{now | date "060102_1504"}}/

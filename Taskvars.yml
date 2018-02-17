@@ -2,3 +2,6 @@ DOCKER_IMAGE: "homer-simpson"
 DOCKER_TAG: "latest"
 DOCKER_FILE: "."
 DOCKER_OPTS: "--rm -d -p 443:443"
+
+BACKUP_DIR: "./backup"
+BAKCUP_FILE: "/opt/simpsons/doh.config"
